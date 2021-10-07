@@ -1,3 +1,4 @@
+//心中一直有个疑惑，对于成绩的录入，如果采用malloc()来申请内存地址，则会造成需要逐次进行赋值操作，有点难以揣摩出题人的意图！！！
 #include <stdio.h>
 #include <stdlib.h>
 float *score(float *p,float *q);
@@ -33,7 +34,7 @@ int main()
 	}
 	return 1;
 }
-float *score(float *s,float *t)//实现求考试成绩平均分，每个学生总成绩，并将结果通过指针
+float *score(float *s,float *t)//实现求考试成绩平均分，每个学生总成绩，并将结果通过指针返回
 {
 	float *a=(float *)malloc(sizeof(float)*11);
 	*a=0;
