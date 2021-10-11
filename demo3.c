@@ -42,6 +42,10 @@ int main()
 		c=getc(stdin);	
 	}
 	q->next=NULL;
+	for(p=h->next;p!=NULL;p=p->next)//
+	{
+		printf("%c\n",p->data);
+	}
 	func(h,out);
 	printf("大写字母个数为:%d\n",out[0]);
 	printf("小写字母个数为:%d\n",out[1]);
