@@ -42,7 +42,7 @@ int main()
 		c=getc(stdin);	
 	}
 	q->next=NULL;
-	for(p=h->next;p!=NULL;p=p->next)//
+	for(p=h->next;p!=NULL;p=p->next)//链表遍历
 	{
 		printf("%c",p->data);
 	}
