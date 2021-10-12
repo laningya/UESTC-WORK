@@ -27,7 +27,7 @@ int main()
 	*(q+8)=3.5;
 	*(q+9)=4.0;
 	float *r=score(p,q);
-	printf("%f\n",*r);
+	printf("学生考试平均成绩为：%f\n",*r);
 	for(int i=1;i<11;i++)
 	{
 		printf("%f\n",*(r+i));
