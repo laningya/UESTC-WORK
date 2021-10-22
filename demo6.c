@@ -7,28 +7,6 @@ typedef struct  list
 }node;
 int creat(node *h)
 {
-	/*char c;
-	node *q=h;
-	c=getc(stdin);
-	while(c!='\n')
-	{
-		node *p=(node *)malloc(sizeof(node));
-		q->next=p;
-		p->data=(int)(c-48);
-		q=p;
-		c=getc(stdin);
-	}*/
-	/*int c;
-	node *q=h;
-	scanf("%d",&c);
-	while(c!='\n')
-	{
-		node *p=(node *)malloc(sizeof(node));
-		q->next=p;
-		p->data=c;
-		q=p;
-		scanf("%d",&c);
-	}*/
 	int c;
 	node *q=h;
 	while(scanf("%d",&c)==1)
@@ -69,36 +47,25 @@ int search(node *h,int num)
 }
 int delre(node *h)
 {
-	int j=1,i;
 	node *q=h->next;
-	node *s=q->next;
-	while(s!=NULL)
+	while(q!=NULL)
 	{
-		int k=0;
-		node *t=h->next;
-		for(i=j;i>0;i--)
+		node *s=q;
+		while(s->next!=NULL)
 		{
-			if(s->data==t->data)
+			if(s->next->data==q->data)
 			{
-				k=1;
-				break;
+				node *t=s->next;
+				s->next=s->next->next;
+				free(t);
+				continue;
 			}
-			t=t->next;
-		}
-		if(k==0)
-		{
 			s=s->next;
-			q=q->next;
-			j++;
 		}
-		else
-		{
-			q->next=s->next;
-			node *r=s;
-			s=s->next;
-			free(r);
-		}
+		q=q->next;
 	}
+	return 1;
+
 }
 int traverse(node *h)
 {
@@ -115,5 +82,6 @@ int main()
 	int input,i;
 	node *head=(node *)malloc(sizeof(node));
 	creat(head);
+	delre(head);
 	traverse(head);
 }
