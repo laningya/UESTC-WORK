@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-typedef struct  list
+typedef struct  list//定义单链表节点
 {
 	int data;
 	struct list *next;
 }node;
-int creat(node *h)
+int creat(node *h)//单链表创建 说明：输入非整数作为输入结尾
 {
 	int c;
 	node *q=h;
@@ -19,7 +19,7 @@ int creat(node *h)
 	q->next=NULL;
 	return 1;
 }
-int length(node *h)
+int length(node *h)//计算单链表长度
 {
 	node *q=h->next;
 	int lengths=0;
@@ -30,7 +30,7 @@ int length(node *h)
 	}
 	return lengths;
 }
-int search(node *h,int num)
+int search(node *h,int num)//查找某个数据的位置
 {
 	node *q=h->next;
 	int order=0;
@@ -45,7 +45,7 @@ int search(node *h,int num)
 	}
 	return -1;
 }
-int delre(node *h)
+int delre(node *h)//删除重复元素
 {
 	node *q=h->next;
 	while(q!=NULL)
@@ -67,7 +67,7 @@ int delre(node *h)
 	return 1;
 
 }
-int traverse(node *h)
+int traverse(node *h)//单链表遍历
 {
 	node *q=h->next;
 	while(q!=NULL)
