@@ -19,10 +19,6 @@ int main()
 	listtype *p=&book1;
 	p->num=4;
 	p->data[2].serial_number=p->data[3].serial_number;
-	/*
-	p->data[2].name[10]=p->data[3].name[10];
-	p->data[2].author[10]=p->data[3].author[10];
-	*/
 	strcpy(p->data[2].name,p->data[3].name);
 	strcpy(p->data[2].author,p->data[3].author);
 	p->data[2].price=p->data[3].price;
