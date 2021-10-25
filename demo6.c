@@ -82,6 +82,4 @@ int main()
 	int input,i;
 	node *head=(node *)malloc(sizeof(node));
 	creat(head);
-	delre(head);
-	traverse(head);
 }
