@@ -82,4 +82,20 @@ int main()
 	int input,i;
 	node *head=(node *)malloc(sizeof(node));
 	creat(head);
+	int lengths=length(head);
+	printf("该链表长度为:%d\n",lengths);
+	i=search(head,3);
+	if(i==-1)
+		printf("该元素不存在\n");
+	else
+		printf("该元素的位置为:%d\n",i);
+	search(head,7);
+	if(i==-1)
+	{
+		printf("该元素不存在\n");
+	}
+	else
+		printf("该元素位置为:%d\n",i);
+	delre(head);
+	traverse(head);
 }
