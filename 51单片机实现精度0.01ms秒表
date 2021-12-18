@@ -1,0 +1,144 @@
+#include <reg52.h>
+#define uchar unsigned char
+#define uint unsigned int
+void display(uchar ,uchar ,uchar ,uchar );
+void delay(uint);
+void function();
+uchar code Seg_Code[] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x80};
+uchar code Bit_Code[] = {0xfe,0xfd,0xfb,0xf7,0xef,0xdf,0xbf,0x7f}; 
+sbit key1 = P3^4;
+sbit key2 = P3^5;
+sbit dula = P2^6;
+sbit wela = P2^7; 
+uchar x = 0;
+uchar y = 0;
+uchar x1=0;
+uchar x2=0;
+uchar y1=0;
+uchar y2=0;
+void main()
+{
+		TMOD = 0x01;
+		TH0 = (65536-10000)/256;
+		TL0 = (65536-10000)%256;
+		EA = 1;
+		ET0 = 1;
+		TR0 = 1;
+	if(key1 == 0)
+	{
+		delay(10);
+		if(key1 == 0)
+		{		
+			function();
+		}
+}
+}
+void T0_time() interrupt 1
+{
+	uchar num;
+	EA = 0; 
+	TH0 = (65536-10000)/256;
+	TL0 = (65536-10000)%256;
+	num++;
+			  if(num == 1)
+        {
+                num = 0;
+                if(x < 99)
+								{
+									x++;
+                }
+                else
+                {
+                    x = 0;
+                    if(y < 59)
+										{
+											y++;
+                    }
+										else
+											y=0;
+                }
+        }
+      EA = 1;
+}
+void delay(uint z)
+{
+	uint d,e;
+	for(d=z;d>0;d--)
+		for(e=110;e>0;e--);
+}
+void display(uchar a1,uchar a2,uchar b1,uchar b2)
+{
+	dula=1;
+	P0=Seg_Code[a1];
+	dula=0;
+	P0=0xff;
+	wela=1;
+	P0=Bit_Code[0];
+	wela=0;
+	delay(5);
+	
+	dula=1;
+	P0=Seg_Code[a2];
+	dula=0;
+	P0=0xff;
+	wela=1;
+	P0=Bit_Code[1];
+	wela=0;
+	delay(5);
+	
+	dula=1;
+	P0=Seg_Code[b1];
+	dula=0;
+	P0=0xff;
+	wela=1;
+	P0=Bit_Code[2];
+	wela=0;
+	delay(5);
+
+	
+	dula=1;
+	P0=Seg_Code[b2];
+	dula=0;
+	P0=0xff;
+	wela=1;
+	P0=Bit_Code[3];
+	wela=0;
+	delay(5);
+	
+	dula=1;
+	P0=Seg_Code[10];
+	dula=0;
+	P0=0xff;
+	wela=1;
+	P0=Bit_Code[1];
+	wela=0;
+	delay(5);
+}
+void function()
+{
+			while(1)
+			{
+				x1=x/10;
+				x2=x%10;
+				y1=y/10;
+				y2=y%10;
+				display(y1,y2,x1,x2);
+				if(key1 == 0)
+				{	
+					delay(10);
+					if(key1 == 0)
+					{
+							x=0;
+							y=0;
+					}
+				}
+				if(key2 == 0)
+				{
+					delay(10);
+					if(key2 == 0)
+					{
+						TR0 = ~TR0;
+					}
+				}
+			}
+}
