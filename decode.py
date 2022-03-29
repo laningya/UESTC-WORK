@@ -58,15 +58,12 @@ if flag :   # CRC验证正确
     context = Inverse_Character_Padding(context,'10111','1011')
     context = Inverse_Character_Padding(context,'01000','0100')
 
-    with open('output2.txt','a+') as f:
-        if Frame[5] == '0':
-            for i in range(0,int(len(context) / 8)):
-                f.write(context[8 * i:8 *(i + 1)])
-                f.write('\n')
-        if Frame[5] == '1':
-            for i in range(0,int(len(context) / 16)):
-                f.write(context[16 * i:16 *(i + 1)])
-                f.write('\n')
+    if Frame[5] == '0':
+        for i in range(0,int(len(context) / 8)):
+            print(context[8 * i:8 * (i + 1)])
+    if Frame[5] == '1':
+        for i in range(0,int(len(context) / 16)):
+            print(context[16 * i:16 * (i + 1)])
 else :
     print('CRC检验失败,请重传帧')
     exit
