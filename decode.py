@@ -45,7 +45,7 @@ with open('input2.txt','r') as f:
     last = len(Frame) - last1 - 5
     if first == -1 or last1 == -1 or first > last:
         print('首尾定位失败,请重传帧')
-        exit 
+        exit()
     context = Frame[first+6:last]
 
 # CRC验证
@@ -66,4 +66,4 @@ if flag :   # CRC验证正确
             print(context[16 * i:16 * (i + 1)])
 else :
     print('CRC检验失败,请重传帧')
-    exit
+    exit()
