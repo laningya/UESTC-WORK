@@ -41,7 +41,7 @@ def Character_Padding(str0,str1,str2): # 正变换
     return str0
 
 #从文件读取数据
-with open('input.txt','r') as f:
+with open('input1.txt','r') as f:
     context = f.read()
 
 # 正变换
@@ -60,4 +60,6 @@ else:
     head = '101101'
 tail = '01001'
 
-print('{0}{1}{2}'.format(head,Check_bits,tail))
+Frame = head + Check_bits + tail
+with open('output1.txt','w') as f:
+    f.write(Frame)
