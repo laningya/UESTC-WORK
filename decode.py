@@ -37,35 +37,32 @@ def Inverse_Character_Padding(str0,str1,str2): # 逆变换
         location1 = len(str0[:location1]) + str0[location1 + 3:].find(str1) + 3
     return str0
 
-# 从文件读取数据并去掉头部尾部
-with open('input2.txt','r') as f:
-    Frame = f.read()
-    first = Frame.find('10110')
-    if Frame[first:first + 8] == '10110110':
-        first = first + 3
-    last1 = Frame[::-1].find('10010')
-    last = len(Frame) - last1 - 5
-    if first == -1 or last1 == -1 or first > last:
-        print('首尾定位失败,请重传帧')
-        exit()
-    context = Frame[first+6:last]
+# 读取数据并去掉头部尾部
+Frame = input('请输入要解码的比特流')
+first = Frame.find('10001')
+last1 = Frame[::-1].find('01110')
+last = len(Frame) - last1 - 5
+if first == -1 or last1 == -1 or first > last:
+    print('首尾定位失败,请重传帧')
+    exit()
+context = Frame[first + 6:last]
 
 # CRC验证
-Generator_Polynomial = '10011'
+Generator_Polynomial = '100000111'
 flag = CRC_Decoding(context,Generator_Polynomial)
 if flag :   # CRC验证正确
     print('CRC检验正确')
-    context = context[:len(context)-4]
+    context = context[:len(context)-8]
     # 逆变换
-    context = Inverse_Character_Padding(context,'10111','1011')
-    context = Inverse_Character_Padding(context,'01000','0100')
-
-    if Frame[5] == '0':
-        for i in range(0,int(len(context) / 8)):
-            print(context[8 * i:8 * (i + 1)])
-    if Frame[5] == '1':
-        for i in range(0,int(len(context) / 16)):
-            print(context[16 * i:16 * (i + 1)])
+    context = Inverse_Character_Padding(context,'01111','0111')
+    context = Inverse_Character_Padding(context,'10000','1000')
+    with open('output2.txt','a+') as f:
+        if Frame[first + 5] == '0':
+            for i in range(0,int(len(context) / 8)):
+                f.write(context[8 * i:8 * (i + 1)])
+        if Frame[first + 5] == '1':
+            for i in range(0,int(len(context) / 16)):
+                f.write(context[16 * i:16 * (i + 1)])
 else :
     print('CRC检验失败,请重传帧')
     exit()
