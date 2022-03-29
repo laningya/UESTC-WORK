@@ -38,12 +38,15 @@ def Inverse_Character_Padding(str0,str1,str2): # 逆变换
     return str0
 
 # 从文件读取数据并去掉头部尾部
-with open('output.txt','r') as f:
+with open('input2.txt','r') as f:
     Frame = f.read()
     first = Frame.find('10110')
     last1 = Frame[::-1].find('10010')
-    last = len(Frame) - last1 -5
-    context = Frame[first+6:last+1]
+    last = len(Frame) - last1 - 5
+    if first == -1 or last1 == -1 or first > last:
+        print('首尾定位失败,请重传帧')
+        exit 
+    context = Frame[first+6:last]
 
 # CRC验证
 Generator_Polynomial = '10011'
@@ -54,12 +57,16 @@ if flag :   # CRC验证正确
     # 逆变换
     context = Inverse_Character_Padding(context,'10111','1011')
     context = Inverse_Character_Padding(context,'01000','0100')
-    if Frame[5] == '0':
-        for i in range(0,int(len(context) / 8)):
-            print(context[8 * i:8 * (i + 1)])
-    if Frame[5] == '1':
-        for i in range(0,int(len(context) / 16)):
-            print(context[16 * i:16 * (i + 1)])
+
+    with open('output2.txt','a+') as f:
+        if Frame[5] == '0':
+            for i in range(0,int(len(context) / 8)):
+                f.write(context[8 * i:8 *(i + 1)])
+                f.write('\n')
+        if Frame[5] == '1':
+            for i in range(0,int(len(context) / 16)):
+                f.write(context[16 * i:16 *(i + 1)])
+                f.write('\n')
 else :
     print('CRC检验失败,请重传帧')
     exit
