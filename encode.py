@@ -61,5 +61,4 @@ else:
 tail = '01001'
 
 Frame = head + Check_bits + tail
-with open('output1.txt','w') as f:
-    f.write(Frame)
+print(Frame)
