@@ -41,7 +41,7 @@ def Character_Padding(str0,str1,str2): # 正变换
     return str0
 
 #读取数据
-context = input('请输入要编码的比特流')
+context = input('请输入要编码的比特流:')
 
 # 正变换
 context = Character_Padding(context,'1000','10000')
