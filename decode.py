@@ -38,7 +38,7 @@ def Inverse_Character_Padding(str0,str1,str2): # 逆变换
     return str0
 
 # 读取数据并去掉头部尾部
-Frame = input('请输入要解码的比特流')
+Frame = input('请输入要解码的比特流:')
 first = Frame.find('10001')
 last1 = Frame[::-1].find('01110')
 last = len(Frame) - last1 - 5
