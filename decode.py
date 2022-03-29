@@ -56,7 +56,7 @@ if flag :   # CRC验证正确
     # 逆变换
     context = Inverse_Character_Padding(context,'01111','0111')
     context = Inverse_Character_Padding(context,'10000','1000')
-    with open('output2.txt','a+') as f:
+    with open('decode_output.txt','a+') as f:
         if Frame[first + 5] == '0':
             for i in range(0,int(len(context) / 8)):
                 f.write(context[8 * i:8 * (i + 1)])
