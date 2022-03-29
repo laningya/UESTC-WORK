@@ -61,5 +61,5 @@ tail = '01110'
 
 Frame = head + Check_bits + tail
 # 写入文件
-with open('output1.txt','w') as f:
+with open('encode_output.txt','w') as f:
     f.write(Frame)
