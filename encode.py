@@ -40,25 +40,26 @@ def Character_Padding(str0,str1,str2): # 正变换
         location1 = len(str0[:location1]) + str0[location1 + 4:].find(str1) + 4
     return str0
 
-#从文件读取数据
-with open('input1.txt','r') as f:
-    context = f.read()
+#读取数据
+context = input('请输入要编码的比特流')
 
 # 正变换
-context = Character_Padding(context,'1011','10111')
-context = Character_Padding(context,'0100','01000')
+context = Character_Padding(context,'1000','10000')
+context = Character_Padding(context,'0111','01111')
 
 # CRC编码
-Generator_Polynomial = '10011'
+Generator_Polynomial = '100000111'
 Check_bits = CRC_Encoding(context,Generator_Polynomial)
 
 # 添加头部尾部
 flag = input("字符帧or汉字帧:")
 if flag == '0':
-    head = '101100'
+    head = '100010'
 else:
-    head = '101101'
-tail = '01001'
+    head = '100011'
+tail = '01110'
 
 Frame = head + Check_bits + tail
-print(Frame)
+# 写入文件
+with open('output1.txt','w') as f:
+    f.write(Frame)
