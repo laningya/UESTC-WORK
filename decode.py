@@ -41,6 +41,8 @@ def Inverse_Character_Padding(str0,str1,str2): # 逆变换
 with open('input2.txt','r') as f:
     Frame = f.read()
     first = Frame.find('10110')
+    if Frame[first:first + 8] == '10110110':
+        first = first + 3
     last1 = Frame[::-1].find('10010')
     last = len(Frame) - last1 - 5
     if first == -1 or last1 == -1 or first > last:
