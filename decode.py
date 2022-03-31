@@ -59,7 +59,7 @@ if flag :   # CRC验证正确
     # 清空输出文件
     with open('decode_output.txt','w') as f:
         f.truncate()
-    with open('decode_output.txt','a+') as f:
+    with open('decode_output.txt','a') as f:
         if Frame[first + 5] == '0':
             for i in range(0,int(len(context) / 8)):
                 f.write(context[8 * i:8 * (i + 1)])
