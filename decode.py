@@ -61,11 +61,15 @@ if flag :   # CRC验证正确
         f.truncate()
     with open('decode_output.txt','a') as f:
         if Frame[first + 5] == '0':
+            f.write('字符帧\n\n')
             for i in range(0,int(len(context) / 8)):
-                f.write(context[8 * i:8 * (i + 1)])
+                f.write(context[8 * i:8 * (i + 1)] + '\n')
+            f.write(('\n' + context))
         if Frame[first + 5] == '1':
+            f.write('汉字帧\n\n')
             for i in range(0,int(len(context) / 16)):
-                f.write(context[16 * i:16 * (i + 1)])
+                f.write(context[16 * i:16 * (i + 1)] + '\n')
+            f.write('\n' + context)
 else :
     print('CRC检验失败,请重传帧')
     exit()
