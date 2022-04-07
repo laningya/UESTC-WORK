@@ -36,40 +36,49 @@ def Inverse_Character_Padding(str0,str1,str2): # 逆变换
         flag1 = str0[location1 + 3:].find(str1)
         location1 = len(str0[:location1]) + str0[location1 + 3:].find(str1) + 3
     return str0
+while True:
+    # 读取数据并去掉头部尾部
+    Frame = input('请输入要解码的数据:')
+    first = Frame.find('10001')
+    last1 = Frame[::-1].find('01110')
+    last = len(Frame) - last1 - 5
+    if first == -1 or last1 == -1 or first > last:
+        print('首尾定位失败,请重传帧')
+        with open('decode.log','a') as f:
+            f.write('解码前:\n' + Frame + '\n首尾定位失败,请重传帧\n\n')
+        continue
+    context = Frame[first + 6:last]
 
-# 读取数据并去掉头部尾部
-Frame = input('请输入要解码的比特流:')
-first = Frame.find('10001')
-last1 = Frame[::-1].find('01110')
-last = len(Frame) - last1 - 5
-if first == -1 or last1 == -1 or first > last:
-    print('首尾定位失败,请重传帧')
-    exit()
-context = Frame[first + 6:last]
-
-# CRC验证
-Generator_Polynomial = '100000111'
-flag = CRC_Decoding(context,Generator_Polynomial)
-if flag :   # CRC验证正确
-    print('CRC检验正确')
-    context = context[:len(context)-8]
-    # 逆变换
-    context = Inverse_Character_Padding(context,'01111','0111')
-    context = Inverse_Character_Padding(context,'10000','1000')
-    # 清空输出文件
-    with open('decode_output.txt','w') as f:
-        f.truncate()
-    with open('decode_output.txt','a') as f:
-        if Frame[first + 5] == '0':
-            f.write('字符帧\n\n')
-            for i in range(0,int(len(context) / 8)):
-                f.write(context[8 * i:8 * (i + 1)] + '\n')
-            f.write(('\n' + context))
-        if Frame[first + 5] == '1':
-            f.write('汉字帧\n\n')
-            for i in range(0,int(len(context) / 16)):
-                f.write(context[16 * i:16 * (i + 1)] + '\n')
-            f.write('\n' + context)
-else :
-    print('CRC检验失败,请重传帧')
-    exit()
+    # CRC验证
+    Generator_Polynomial = '100000111'
+    flag = CRC_Decoding(context,Generator_Polynomial)
+    if flag :   # CRC验证正确
+        print('CRC检验正确')
+        context = context[:len(context)-8]
+        # 逆变换
+        context = Inverse_Character_Padding(context,'01111','0111')
+        context = Inverse_Character_Padding(context,'10000','1000')
+        # 写入日志文件并输出
+        with open('decode.log','a') as f:
+            f.write('解码前:\n' + Frame + '\nCRC检验正确\n' )
+            if Frame[first + 5] == '0':
+                f.write('字符帧\n')
+                print('字符帧')
+                for i in range(0,int(len(context) / 8)):
+                    f.write(context[8 * i:8 * (i + 1)] + '\n')
+                    print(context[8 * i:8 * (i + 1)])
+                f.write(context + '\n\n')
+                print(context)
+            if Frame[first + 5] == '1':
+                f.write('汉字帧\n\n')
+                print('汉字帧\n')
+                for i in range(0,int(len(context) / 16)):
+                    f.write(context[16 * i:16 * (i + 1)] + '\n')
+                    print(context[16 * i:16 * (i + i)])
+                f.write(context + '\n\n')
+                print(context)
+    else :
+        print('CRC检验失败,请重传帧')
+        with open('decode.log','a') as f:
+            f.write('解码前\n' + Frame + '\nCRC检验失败,请重传帧\n\n')
+        continue
