@@ -39,27 +39,29 @@ def Character_Padding(str0,str1,str2): # 正变换
         flag1 = str0[location1 + 4:].find(str1)
         location1 = len(str0[:location1]) + str0[location1 + 4:].find(str1) + 4
     return str0
+while True:
+    #读取数据
+    context = input('请输入要编码的比特流:')
+    text =context
+    # 正变换
+    context = Character_Padding(context,'1000','10000')
+    context = Character_Padding(context,'0111','01111')
 
-#读取数据
-context = input('请输入要编码的比特流:')
+    # CRC编码
+    Generator_Polynomial = '100000111'
+    Check_bits = CRC_Encoding(context,Generator_Polynomial)
 
-# 正变换
-context = Character_Padding(context,'1000','10000')
-context = Character_Padding(context,'0111','01111')
+    # 添加头部尾部
+    flag = input("字符帧or汉字帧:")
+    if flag == '0':
+        head = '100010'
+    else:
+        head = '100011'
+    tail = '01110'
 
-# CRC编码
-Generator_Polynomial = '100000111'
-Check_bits = CRC_Encoding(context,Generator_Polynomial)
-
-# 添加头部尾部
-flag = input("字符帧or汉字帧:")
-if flag == '0':
-    head = '100010'
-else:
-    head = '100011'
-tail = '01110'
-
-Frame = head + Check_bits + tail
-# 写入文件
-with open('encode_output.txt','w') as f:
-    f.write(Frame)
+    Frame = head + Check_bits + tail
+    print('编码结果为:\n' + Frame)
+    # 写入日志文件
+    with open('encode.log','a') as f:
+        f.write('编码前:\n' + text +'\n指定模式:\n' + flag +'\n' + '编码结果为:\n' + Frame +'\n\n')
+        
