@@ -64,4 +64,3 @@ while True:
     # 写入日志文件
     with open('encode.log','a') as f:
         f.write('编码前:\n' + text +'\n指定模式:\n' + flag +'\n' + '编码结果为:\n' + Frame +'\n\n')
-        
