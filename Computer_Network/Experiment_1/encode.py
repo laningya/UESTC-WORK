@@ -1,7 +1,5 @@
 # /usr/bin/python
 
-from dataclasses import replace
-
 
 def XOR(str1, str2):  # 实现模2减法
     ans = ''
