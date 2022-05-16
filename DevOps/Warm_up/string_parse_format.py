@@ -15,5 +15,9 @@ for i in range(0,len(context)):
     number = filter(str.isdigit,  strdata)
     number = list(number)
    
-    with open(output_filename,'a+') as f:
-        f.write(f'{number[0]}{number[1]}{number[2]}-{number[3]}{number[4]}{number[5]}-{number[6]}{number[7]}{number[8]}''\n''')
+    if i != len(context) - 1:
+        with open(output_filename,'a+') as f:
+            f.write(f'{number[0]}{number[1]}{number[2]}-{number[3]}{number[4]}{number[5]}-{number[6]}{number[7]}{number[8]}''\n''')
+    else:
+        with open(output_filename,'a+') as f:
+            f.write(f'{number[0]}{number[1]}{number[2]}-{number[3]}{number[4]}{number[5]}-{number[6]}{number[7]}{number[8]}')

@@ -14,4 +14,5 @@ for i in range(1,len(Data_List)):
         sum = sum + int(Binary_String[j]) * 2 ** k
         k = k + 1
 
-print(sum)
+binary_sum = bin(sum)
+print(binary_sum[2:])
