@@ -165,7 +165,7 @@ nproc
 make -j4
 ```
 
-![linux内核编译](D:\桌面\文件\华迪实习\\QQ图片20220626172901.png)
+![linux内核编译](./image/QQ图片20220626172901.png)
 
 ### QT环境配置
 
@@ -180,7 +180,7 @@ sudo apt install libclang-common-8-dev
 sudo tar -zxvf qt5.12.8.tar.gz -C /opt
 ```
 
-![QQ图片20220626174719](D:\桌面\文件\华迪实习\\QQ图片20220626174719.png)
+![QQ图片20220626174719](./image/QQ图片20220626174719.png)
 
 ### 交叉编译openSSH服务
 
@@ -235,7 +235,7 @@ sudo tar -zxvf qt5.12.8.tar.gz -C /opt
 
    
 
-![openssh交叉编译截图](D:\桌面\文件\华迪实习\\QQ图片20220626180113.png)
+![openssh交叉编译截图](./image/QQ图片20220626180113.png)
 
 ### 在开发板上部署openSSH服务
 
@@ -292,7 +292,7 @@ chown root:root /home/mln/openssh -R
 
    
 
-![openSSH移植截图](D:\桌面\文件\华迪实习\\QQ图片20220626181702.png)
+![openSSH移植截图](./image/QQ图片20220626181702.png)
 
 ### 编译lrzsz
 
@@ -612,7 +612,7 @@ void Widget::paintEvent(QPaintEvent *)
 }
 ```
 
-![cos函数截图](D:\桌面\文件\华迪实习\QQ图片20220629234600.png)
+![cos函数截图](./image/QQ图片20220629234600.png)
 
 ## ==6月30日==
 
@@ -775,7 +775,7 @@ void DoThread::run()
 
 ```
 
-![任务一截图](D:\桌面\文件\华迪实习\QQ图片20220630222802.png)
+![任务一截图](./image/QQ图片20220630222802.png)
 
 ### 画图
 
@@ -847,7 +847,7 @@ void Widget::mouseMoveEvent(QMouseEvent *event)
 }
 ```
 
-![任务二截图](D:\桌面\文件\华迪实习\QQ图片20220630223029.png)
+![任务二截图](./image/QQ图片20220630223029.png)
 
 ## ==7月1日==
 
