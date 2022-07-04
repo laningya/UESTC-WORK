@@ -58,7 +58,7 @@ sudo tar jxvf arm-2014.05-29-arm-none-linux-gnueabi-i686-pc-linuxgnu.tar.bz2 -C 
 /usr/local/arm-2014.05/bin/arm-none-linux-gnueabi-gcc hello.c -o hello
 ```
 
-![hello world编译截图](D:\桌面\文件\华迪实习\QQ图片20220625220146.png)
+![hello world编译截图](./image/QQ图片20220625220146.png)
 
 4. 添加环境变量
 
