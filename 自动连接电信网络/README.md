@@ -23,12 +23,12 @@
 
 1. 获取post_url中的IP地址和post_data中的queryString字段
 
-   ![](images\1.png)
+   ![](images/1.png)
 
    如图，在电信宽带认证界面的url中，172.25.249.64即为posturl中需要的IP地址；index.jsp? 之后的所有内容为post_data中queryString需要的信息。
 
 2. 获取post_data中的userId和password
-   ![](images\2.png)
+   ![](images/2.png)
 
    如图，需要打开在浏览器打开f12开发者工具，如图为Google  Chrome的调试页面。点击网络，保留日志，双击InterFace.do?method=login选项，选择载荷，找到其中的userId和password字段，并填入代码中，**注意：**pasaword字段后面还有个queryString字段，在步骤1中我们也有一个相同名称的字段，而程序需要的是步骤1中的字段。
 
