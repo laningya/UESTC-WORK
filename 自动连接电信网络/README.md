@@ -10,7 +10,7 @@
 
 在此基础上，我修改了部分代码，更便于后续的部署实践
 
-**修改后的地址**：
+**修改后的地址**：[https://github.com/laningya/UESTC-WORK/blob/master/%E8%87%AA%E5%8A%A8%E8%BF%9E%E6%8E%A5%E7%94%B5%E4%BF%A1%E7%BD%91%E7%BB%9C/autoConnectNetwork.py](https://github.com/laningya/UESTC-WORK/blob/master/%E8%87%AA%E5%8A%A8%E8%BF%9E%E6%8E%A5%E7%94%B5%E4%BF%A1%E7%BD%91%E7%BB%9C/autoConnectNetwork.py)
 
 先看一下脚本需要提供的信息
 
