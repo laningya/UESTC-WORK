@@ -57,9 +57,3 @@
    #每分钟执行自动连接网络的脚本
    * * * * * /usr/bin/python  /home/pi/.script/autoConnectNetwork.py > /dev/null 2>&1 &
    ```
-
-   
-
-   
-
-    
