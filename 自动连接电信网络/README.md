@@ -77,7 +77,7 @@
    -t:指定构建后的镜像名
    ```
    
-   ![]()
+   ![](images/docker_build.png)
    
 3. 运行镜像。还是在/Docker目录下，命令行执行
 
@@ -95,4 +95,4 @@
    laningya/uestc_auto_connect_network:v1 我们前面构建的镜像名称
    ```
    
-   ![]()
+   ![](images/docker_run_ps.png)
