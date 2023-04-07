@@ -57,3 +57,42 @@
    #每分钟执行自动连接网络的脚本
    * * * * * /usr/bin/python  /home/pi/.script/autoConnectNetwork.py > /dev/null 2>&1 &
    ```
+
+### 通过Docker部署脚本
+
+1. 下载项目文件和Docker环境以及填写配置文件。Docker的安装方法可以参考[官方文档](https://docs.docker.com/engine/install/)，Docker部署文件地址为：[https://github.com/laningya/UESTC-WORK/tree/master/%E8%87%AA%E5%8A%A8%E8%BF%9E%E6%8E%A5%E7%94%B5%E4%BF%A1%E7%BD%91%E7%BB%9C/Docker](https://github.com/laningya/UESTC-WORK/tree/master/%E8%87%AA%E5%8A%A8%E8%BF%9E%E6%8E%A5%E7%94%B5%E4%BF%A1%E7%BD%91%E7%BB%9C/Docker) 需要的配置与前面一致，配置文件路径为Docker/config/config.txt，填入必要的信息。
+
+2. 构建镜像。如果你是Linux用户，在Docker文件夹下，命令行执行
+
+   ```shell
+   docker build --no-cache -t  laningya/uestc_auto_connect_network:v1 .
+   ```
+
+   **不要忘记复制后面的点**
+   
+   ```c++
+   说明：
+   build:docker构建镜像的命令
+   --no-cache:忽略缓存
+   -t:指定构建后的镜像名
+   ```
+   
+   ![]()
+   
+3. 运行镜像。还是在/Docker目录下，命令行执行
+
+   ```shell
+   docker run -itd  --restart=always  --net=host  --name autoConnectNetwork laningya/uestc_auto_connect_network:v1
+   ```
+
+   ```shell
+   说明：
+   run:docker运行容器的命令
+   -itd：可以简单理解为在后台执行
+   --restart=always:容器运行出现错误时，自动尝试重启，关键参数，不能轻易取消
+   --net=host:指定容器网络为host模式，便于直接访问路由器
+   --name utoConnectNetwork 指定容器名，便于后续管理
+   laningya/uestc_auto_connect_network:v1 我们前面构建的镜像名称
+   ```
+   
+   ![]()
